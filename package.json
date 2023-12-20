@@ -1,6 +1,6 @@
 {
   "name": "@attomtech/react",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "",
   "author": "Paulo Cezar Motta",
   "license": "MIT",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@attomtech/eslint-config": "1.0.0",
-    "@attomtech/tokens": "1.0.2",
+    "@attomtech/tokens": "1.1.1",
     "@attomtech/ts-config": "1.0.0",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
