@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "@attomtech/eslint-config"
+  ]
+}
