@@ -1,110 +1,65 @@
-import { styled } from '../styles'
-import { ComponentProps, ElementType } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 
-export const Button = styled('button', {
-  all: 'unset',
-  borderRadius: '$sm',
-  fontSize: '$sm',
-  fontWeight: '$medium',
-  textAlign: 'center',
-  minWidth: 120,
-  boxSizing: 'border-box',
-  padding: '0 $4',
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode
+  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'back'
+  size?: 'sm' | 'md' | 'lg'
+}
 
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '$2',
-
-  cursor: 'pointer',
-
-  svg: {
-    width: '$4',
-    height: '$4'
-  },
-
-  '&:disabled': {
-    cursor: 'not-allowed',
-    background: '$gray200'
-  },
-
-  '&:focus': {
-    boxShadow: '0 0 0 2px $colors$gray100'
-  },
-
-  variants: {
-    variant: {
-      primary: {
-        color: '$white',
-        background: '$blue500',
-
-        '&:not(:disabled):hover': {
-          background: '$blue300'
-        }
-      },
-
-      success: {
-        color: '$white',
-        background: '$green500',
-
-        '&:not(:disabled):hover': {
-          background: '$green300'
-        }
-      },
-
-      warning: {
-        color: '$white',
-        background: '$yellow500',
-
-        '&:not(:disabled):hover': {
-          background: '$yellow300'
-        }
-      },
-
-      danger: {
-        color: '$white',
-        background: '$red500',
-
-        '&:not(:disabled):hover': {
-          background: '$red300'
-        }
-      },
-
-      back: {
-        color: '$gray100',
-
-        '&:not(:disabled):hover': {
-          color: '$white'
-        },
-
-        '&:disabled': {
-          color: '$gray600',
-          background: 'transparent'
-        }
-      }
-    },
-
-    size: {
-      sm: {
-        height: 38
-      },
-      md: {
-        height: 46
-      },
-      lg: {
-        height: 54
-      }
+export function Button({
+  children,
+  className,
+  variant = 'primary',
+  size = 'md',
+  ...props
+}: ButtonProps) {
+  function getVariantClasses(variant: string) {
+    switch (variant) {
+      case 'primary':
+        return 'text-white bg-sky-500 enabled:hover:bg-sky-300'
+      case 'success':
+        return 'text-white bg-emerald-500 enabled:hover:bg-emerald-300'
+      case 'warning':
+        return 'text-white bg-yellow-500 enabled:hover:bg-yellow-300'
+      case 'danger':
+        return 'text-white bg-red-500 enabled:hover:bg-red-300'
+      case 'back':
+        return 'text-zinc-100 enabled:hover:text-white disabled:text-zinc-600 disabled:bg-transparent'
     }
-  },
-
-  defaultVariants: {
-    variant: 'primary',
-    size: 'md'
   }
-})
 
-export interface ButtonProps extends ComponentProps<typeof Button> {
-  as?: ElementType
+  function getSizeClasses(size: string) {
+    switch (size) {
+      case 'sm':
+        return 'h-9'
+      case 'md':
+        return 'h-11'
+      case 'lg':
+        return 'h-14'
+    }
+  }
+
+  return (
+    <button
+      className={`
+          rounded-md 
+          text-sm text-center 
+          font-medium 
+          min-w-32 
+          box-border 
+          px-0 py-4 
+          flex items-center justify-center gap-2 
+          cursor-pointer 
+          [&>svg]:w-4 [&>svg]:h-4 
+          disabled:cursor-not-allowed disabled:bg-zinc-200 
+          focus:shadow focus:shadow-zinc-100 
+          ${getVariantClasses(variant)}
+          ${getSizeClasses(size)}`}
+      {...props}
+    >
+      {children}
+    </button>
+  )
 }
 
 Button.displayName = 'Button'
