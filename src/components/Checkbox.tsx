@@ -8,13 +8,13 @@ export interface CheckboxProps extends ComponentProps<typeof Root> {
 
 const variantClasses = {
   primary:
-    'data-[state=checked]:bg-sky-500 data-[state=checked]:focus:border-sky-500',
+    'data-[state=checked]:bg-sky-500 data-[state=checked]:border-sky-500 focus:border-sky-500',
   success:
-    'data-[state=checked]:bg-emerald-500 data-[state=checked]:focus:border-emerald-500',
+    'data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500 focus:border-emerald-500',
   warning:
-    'data-[state=checked]:bg-yellow-300 data-[state=checked]:focus:border-yellow-300',
+    'data-[state=checked]:bg-yellow-300 data-[state=checked]:border-yellow-300 focus:border-yellow-300',
   danger:
-    'data-[state=checked]:bg-red-500 data-[state=checked]:focus:border-red-500'
+    'data-[state=checked]:bg-red-500 data-[state=checked]:border-red-500 focus:border-red-500'
 }
 
 export function Checkbox({ variant = 'primary', ...props }: CheckboxProps) {
