@@ -1,11 +1,11 @@
-import { ReactNode } from 'react'
+import { BaseHTMLAttributes, ReactNode } from 'react'
 
-export interface BoxProps {
+export interface BoxProps extends BaseHTMLAttributes<HTMLDivElement> {
   children: ReactNode
   className?: string
 }
 
-export function Box({ children, className }: BoxProps) {
+export function Box({ children, className, ...props }: BoxProps) {
   return (
     <div
       className={`
@@ -15,6 +15,7 @@ export function Box({ children, className }: BoxProps) {
         border border-solid border-zinc-600 
         ${className}
       `}
+      {...props}
     >
       {children}
     </div>
