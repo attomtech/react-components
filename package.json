@@ -1,6 +1,6 @@
 {
   "name": "@attomtech/react",
-  "version": "3.0.0-beta.3",
+  "version": "3.0.0-beta.4",
   "description": "",
   "author": "Paulo Cezar Motta",
   "license": "MIT",
@@ -12,7 +12,8 @@
     "dev": "tsup src/index.tsx --format esm,cjs --dts --watch",
     "lint": "eslint src/**/*.ts* --fix",
     "version": "npm version --no-git-tag-version",
-    "publish": "npm publish --access=public"
+    "release": "npm publish --access=public",
+    "beta": "npm publish --access=public --no-tag"
   },
   "devDependencies": {
     "@attomtech/eslint-config": "1.0.0",
