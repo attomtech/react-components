@@ -48,10 +48,10 @@ export const AlertDialog = forwardRef(
             data-[state=open]:animate-contentShow
             focus:outline-none`}
           >
-            <AlertDialogRadix.Title className="m-0 text-zinc-100 text-2xl font-bold">
+            <AlertDialogRadix.Title className="mx-0 mt-0 mb-2 text-zinc-100 text-2xl font-bold">
               {titulo}
             </AlertDialogRadix.Title>
-            <AlertDialogRadix.Description className="mb-5 text-zinc-100 text-base leading-3">
+            <AlertDialogRadix.Description className="mb-5 text-zinc-100 text-base leading-5">
               {descricao}
             </AlertDialogRadix.Description>
             <div className="flex justify-end gap-3">
