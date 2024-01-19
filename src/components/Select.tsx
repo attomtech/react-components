@@ -86,7 +86,7 @@ export function Select({
         bg-zinc-900 text-white
         shadow-[0_2px_10px] shadow-zinc-900
         hover:bg-zinc-800
-        focus:shadow-[0_0_0_2px] focus:shadow-black focus:border-1 focus:border-solid
+        focus:shadow-[0_0_0_2px] focus:shadow-black focus:border focus:border-solid
         data-[placeholder]:text-white
         data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed
         ${variantClasses[variant]}
