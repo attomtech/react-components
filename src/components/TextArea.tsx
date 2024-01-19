@@ -15,6 +15,7 @@ const variantClasses = {
 export function TextArea({
   children,
   variant = 'primary',
+  className = '',
   ...props
 }: TextAreaProps) {
   return (
@@ -29,6 +30,7 @@ export function TextArea({
         disabled:opacity-5 disabled:cursor-not-allowed
         placeholder:text-zinc-400
         ${variantClasses[variant]}
+        ${className}
         `}
       {...props}
     >

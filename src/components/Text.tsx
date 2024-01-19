@@ -2,7 +2,6 @@ import { BaseHTMLAttributes } from 'react'
 
 export interface TextProps extends BaseHTMLAttributes<HTMLParagraphElement> {
   children: string
-  className?: string
   as?: 'p' | 'strong'
 }
 
