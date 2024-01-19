@@ -1,66 +1,39 @@
-import { styled } from '../styles'
-import { ComponentProps } from 'react'
+import { TextareaHTMLAttributes } from 'react'
 
-export const TextArea = styled('textarea', {
-  backgroundColor: '$gray900',
-  padding: '$3 $4',
-  borderRadius: '$sm',
-  boxSizing: 'border-box',
-  border: '2px solid $gray900',
+export interface TextAreaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  variant?: 'primary' | 'success' | 'warning' | 'danger'
+}
 
-  fontFamily: '$default',
-  fontSize: '$sm',
-  color: '$white',
-  fontWeight: '$regular',
-  resize: 'vertical',
-  minHeight: '80',
+const variantClasses = {
+  primary: 'focus:border-sky-300',
+  success: 'focus:border-emerald-300',
+  warning: 'focus:border-yellow-300',
+  danger: 'focus:border-red-300'
+}
 
-  '&:focus': {
-    outline: 0
-  },
-
-  '&:disabled': {
-    opacity: 0.5,
-    cursor: 'not-allowed'
-  },
-
-  '&:placeholder': {
-    color: '$gray400'
-  },
-
-  variants: {
-    variant: {
-      primary: {
-        '&:focus': {
-          borderColor: '$blue300'
-        }
-      },
-
-      success: {
-        '&:focus': {
-          borderColor: '$green300'
-        }
-      },
-
-      warning: {
-        '&:focus': {
-          borderColor: '$yellow300'
-        }
-      },
-
-      danger: {
-        '&:focus': {
-          borderColor: '$red300'
-        }
-      }
-    }
-  },
-
-  defaultVariants: {
-    variant: 'primary'
-  }
-})
-
-export interface TextAreaProps extends ComponentProps<typeof TextArea> {}
+export function TextArea({
+  children,
+  variant = 'primary',
+  ...props
+}: TextAreaProps) {
+  return (
+    <textarea
+      className={`
+        bg-zinc-900 
+        px-3 py-4 
+        rounded-sm box-border border-2 border-solid border-zinc-900
+        text-sm text-white font-normal resize-y
+        focus:outline-0
+        disabled:opacity-5 disabled:cursor-not-allowed
+        placeholder:text-zinc-400
+        ${variantClasses[variant]}
+        `}
+      {...props}
+    >
+      {children}
+    </textarea>
+  )
+}
 
 TextArea.displayName = 'TextArea'

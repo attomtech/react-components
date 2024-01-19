@@ -1,48 +1,19 @@
-import { styled } from '../styles'
-import { ComponentProps, ElementType } from 'react'
+export interface HeadingProps {
+  children: string
+  className: string
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+}
 
-export const Heading = styled('h2', {
-  fontFamily: '$default',
-  lineHeight: '$shorter',
-  margin: 0,
-  color: '$gray100',
-
-  variants: {
-    size: {
-      sm: {
-        fontSize: '$xl'
-      },
-      md: {
-        fontSize: '$2xl'
-      },
-      lg: {
-        fontSize: '$4xl'
-      },
-      xl: {
-        fontSize: '$5xl'
-      },
-      '2xl': {
-        fontSize: '$6xl'
-      },
-      '3xl': {
-        fontSize: '$7xl'
-      },
-      '4xl': {
-        fontSize: '$8xl'
-      },
-      '5xl': {
-        fontSize: '$9xl'
-      }
-    }
-  },
-
-  defaultVariants: {
-    size: 'md'
-  }
-})
-
-export interface HeadingProps extends ComponentProps<typeof Heading> {
-  as?: ElementType
+export function Heading({
+  children,
+  className,
+  as: Comp = 'h2'
+}: HeadingProps) {
+  return (
+    <Comp className={`leading-3 m-0 text-zinc-100 ${className}`}>
+      {children}
+    </Comp>
+  )
 }
 
 Heading.displayName = 'Heading'
