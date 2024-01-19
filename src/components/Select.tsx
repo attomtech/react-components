@@ -22,14 +22,14 @@ const SelectItem = forwardRef<ElementRef<typeof Item>, SelectItemProps>(
     return (
       <Item
         className={`
-        text-sm text-zinc-900 
+        text-sm text-zinc-200 
         rounded-md
         leading-normal 
         flex items-center
         px-3 py-1
         relative select-none
         data-[disabled]:text-zinc-200 data-[disabled]:pointer-events-none
-        data-[highlighted]:outline-none data-[highlighted]:bg-zinc-900 data-[highlighted=true]:text-white data-[highlighted=true]:cursor-pointer
+        data-[highlighted]:outline-none data-[highlighted]:bg-zinc-100 data-[highlighted]:text-zinc-900 data-[highlighted]:cursor-pointer
       `}
         {...props}
         ref={forwardedRef}
@@ -106,7 +106,7 @@ export function Select({
             <ArrowUp />
           </ScrollUpButton>
 
-          <Viewport className="p-2">
+          <Viewport className="p-2 bg-zinc-900">
             {options.map(({ label, value }) => {
               return (
                 <SelectItem key={value} value={value}>
