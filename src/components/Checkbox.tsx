@@ -12,7 +12,7 @@ const variantClasses = {
   success:
     'data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500 focus:border-emerald-500',
   warning:
-    'data-[state=checked]:bg-yellow-300 data-[state=checked]:border-yellow-300 focus:border-yellow-300',
+    'data-[state=checked]:bg-yellow-500 data-[state=checked]:border-yellow-500 focus:border-yellow-500',
   danger:
     'data-[state=checked]:bg-red-500 data-[state=checked]:border-red-500 focus:border-red-500'
 }
