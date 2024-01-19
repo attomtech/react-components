@@ -20,9 +20,10 @@ export function TextArea({
   return (
     <textarea
       className={`
+        w-full
         bg-zinc-900 
         px-3 py-4 
-        rounded-sm box-border border-2 border-solid border-zinc-900
+        rounded-md box-border border-2 border-solid border-zinc-900
         text-sm text-white font-normal resize-y
         focus:outline-0
         disabled:opacity-5 disabled:cursor-not-allowed
