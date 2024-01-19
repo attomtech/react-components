@@ -3,17 +3,19 @@ import { BaseHTMLAttributes } from 'react'
 export interface TextProps extends BaseHTMLAttributes<HTMLParagraphElement> {
   children: string
   className?: string
+  as?: 'p' | 'strong'
 }
 
 export function Text({
   children,
   className = 'text-base',
+  as: Comp = 'p',
   ...props
 }: TextProps) {
   return (
-    <p className={`leading-4 m-0 text-zinc-100 ${className}`} {...props}>
+    <Comp className={`leading-4 m-0 text-zinc-100 ${className}`} {...props}>
       {children}
-    </p>
+    </Comp>
   )
 }
 
