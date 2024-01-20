@@ -1,8 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
+    screens: {
+      tablet: { max: '640px' },
+      desktop: '641px'
+    },
     extend: {
       keyframes: {
         overlayShow: {
@@ -48,5 +53,13 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant('primary', '&[data-variant=primary]')
+      addVariant('success', '&[data-variant=success]')
+      addVariant('warning', '&[data-variant=warning]')
+      addVariant('danger', '&[data-variant=danger]')
+      addVariant('default', '&[data-variant="default"]')
+    })
+  ]
 }
