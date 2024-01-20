@@ -36,20 +36,22 @@ export function Column({
 
   return (
     <th
-      className="py-3 px-4 flex justify-start items-center gap-1 data-[clickable=true]:cursor-pointer"
+      className="py-3 px-4 data-[clickable=true]:cursor-pointer"
       onClick={() => onColumnClickedHandler(id, clickable)}
       data-clickable={clickable}
     >
-      {label}
-      {id === columnClicked ? (
-        columnDirection === 'ASC' ? (
-          <ArrowUp />
+      <div className="flex justify-start items-center gap-1">
+        {label}
+        {id === columnClicked ? (
+          columnDirection === 'ASC' ? (
+            <ArrowUp />
+          ) : (
+            <ArrowDown />
+          )
         ) : (
-          <ArrowDown />
-        )
-      ) : (
-        <ArrowUp className="opacity-0" />
-      )}
+          <ArrowUp className="opacity-0" />
+        )}
+      </div>
     </th>
   )
 }
