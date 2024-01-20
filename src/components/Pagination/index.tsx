@@ -1,5 +1,6 @@
-import { BeforeNextPage, Page, PaginationContainer } from './styles'
 import { ArrowLeft, ArrowRight } from 'phosphor-react'
+import { BeforeNextPage } from './BeforeNextPage'
+import { Page } from './Page'
 
 export interface PaginationProps {
   currentPage: number
@@ -35,7 +36,7 @@ export const Pagination = (props: PaginationProps) => {
   }
 
   return (
-    <PaginationContainer>
+    <div className="flex justify-center items-center gap-2.5 mt-4 w-full">
       <BeforeNextPage
         disabled={props.currentPage === 1}
         onClick={() => {
@@ -67,7 +68,7 @@ export const Pagination = (props: PaginationProps) => {
       >
         <ArrowRight />
       </BeforeNextPage>
-    </PaginationContainer>
+    </div>
   )
 }
 
