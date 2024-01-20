@@ -58,7 +58,7 @@ export function Row({
     <Tr>
       {values.map(({ text, label }, rowIndex) => {
         return (
-          <Td data-label={label} key={rowIndex}>
+          <Td label={label} key={rowIndex}>
             {text}
           </Td>
         )

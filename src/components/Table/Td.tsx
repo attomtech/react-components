@@ -1,11 +1,13 @@
 import { TableHTMLAttributes } from 'react'
 
-export function Td({
-  children,
-  className
-}: TableHTMLAttributes<HTMLTableElement>) {
+interface TdProps extends TableHTMLAttributes<HTMLTableElement> {
+  label?: string
+}
+
+export function Td({ children, className, label }: TdProps) {
   return (
     <td
+      data-label={label}
       className={`
         py-1 px-4 
         desktop:first:rounded-tl-md desktop:first:rounded-bl-md desktop:last:rounded-tr-md desktop:rounded-br-md

@@ -36,7 +36,7 @@ export function Column({
 
   return (
     <th
-      className="py-3 px-4 text-left data-[clickable=true]:cursor-pointer"
+      className="py-3 px-4 flex justify-start items-center gap-1 data-[clickable=true]:cursor-pointer"
       onClick={() => onColumnClickedHandler(id, clickable)}
       data-clickable={clickable}
     >
