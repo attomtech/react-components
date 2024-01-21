@@ -43,13 +43,58 @@ module.exports = {
           to: {
             transform: 'translateY(-100%)'
           }
+        },
+        hide: {
+          from: {
+            opacity: 1
+          },
+          to: {
+            opacity: 0
+          }
+        },
+        slideInRight: {
+          from: {
+            transform: 'translateX(calc(100% + 24px))'
+          },
+          to: {
+            transform: 'translateX(0)'
+          }
+        },
+        slideInLeft: {
+          from: {
+            transform: 'translateX(-24px)'
+          },
+          to: {
+            transform: 'translateX(0)'
+          }
+        },
+        slideOutRight: {
+          from: {
+            transform: 'translateX(var(--radix-toast-swipe-end-x))'
+          },
+          to: {
+            transform: 'translateX(calc(100% + 24px))'
+          }
+        },
+        slideOutLeft: {
+          from: {
+            transform: 'translateX(var(--radix-toast-swipe-end-x))'
+          },
+          to: {
+            transform: 'translateX(-24px)'
+          }
         }
       },
       animation: {
         overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
         contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
         slideIn: 'slideIn 200ms ease-out',
-        slideOut: 'slideOut 200ms ease-out'
+        slideOut: 'slideOut 200ms ease-out',
+        hide: 'hide 100ms ease-in',
+        slideInLeft: 'slideInLeft 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideInRight: 'slideInRight 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideOutLeft: 'slideOutLeft 100ms ease-out',
+        slideOutRight: 'slideOutRight 100ms ease-out'
       }
     }
   },
