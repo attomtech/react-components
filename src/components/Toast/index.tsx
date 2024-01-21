@@ -68,7 +68,7 @@ export const Toast = forwardRef(
         <Viewport
           data-position={position}
           className={`
-          fixed top-0 right-0
+          fixed
           flex flex-col gap-2.5 
           w-96 max-w-[100vw] 
           p-6 m-0 
