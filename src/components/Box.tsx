@@ -23,3 +23,5 @@ export function Box({ children, className, ...props }: BoxProps) {
 }
 
 Box.displayName = 'Box'
+
+export default Box

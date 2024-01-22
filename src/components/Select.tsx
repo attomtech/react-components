@@ -1,5 +1,3 @@
-'use client'
-
 import {
   SelectTrigger,
   SelectIcon,
@@ -128,3 +126,5 @@ export function Select({
 }
 
 Select.displayName = 'Select'
+
+export default Select

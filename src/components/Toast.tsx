@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Action,
   Description,
@@ -87,3 +85,5 @@ export const Toast = forwardRef(
 )
 
 Toast.displayName = 'Toast'
+
+export default Toast

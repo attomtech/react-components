@@ -73,3 +73,5 @@ export const Pagination = (props: PaginationProps) => {
 }
 
 Pagination.displayName = 'Pagination'
+
+export default Pagination

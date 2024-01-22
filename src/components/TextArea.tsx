@@ -40,3 +40,5 @@ export function TextArea({
 }
 
 TextArea.displayName = 'TextArea'
+
+export default TextArea

@@ -19,3 +19,5 @@ export function Heading({
 }
 
 Heading.displayName = 'Heading'
+
+export default Heading

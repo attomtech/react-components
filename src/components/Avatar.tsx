@@ -1,5 +1,3 @@
-'use client'
-
 import { ComponentProps } from 'react'
 import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 import { User } from 'phosphor-react'
@@ -26,3 +24,5 @@ export function Avatar(props: AvatarProps) {
 }
 
 Avatar.displayName = 'Avatar'
+
+export default Avatar

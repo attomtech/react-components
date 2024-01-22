@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import { Tr } from './Tr'
 import { Thead } from './Thead'
@@ -59,3 +57,5 @@ export const Table = (props: TableProps) => {
 }
 
 Table.displayName = 'Table'
+
+export default Table

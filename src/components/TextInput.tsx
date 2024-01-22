@@ -65,3 +65,5 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
 )
 
 TextInput.displayName = 'TextInput'
+
+export default TextInput

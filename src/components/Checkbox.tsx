@@ -1,5 +1,3 @@
-'use client'
-
 import { ComponentProps } from 'react'
 import { Root, CheckboxIndicator } from '@radix-ui/react-checkbox'
 import { Check } from 'phosphor-react'
@@ -44,3 +42,5 @@ export function Checkbox({ variant = 'primary', ...props }: CheckboxProps) {
 }
 
 Checkbox.displayName = 'Checkbox'
+
+export default Checkbox

@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Root,
   Portal,
@@ -79,3 +77,5 @@ export const AlertDialog = forwardRef(
 )
 
 AlertDialog.displayName = 'AlertDialog'
+
+export default AlertDialog
