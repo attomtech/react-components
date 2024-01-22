@@ -1,24 +1,25 @@
 import { ComponentProps } from 'react'
-import * as AvatarRadix from '@radix-ui/react-avatar'
+import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 import { User } from 'phosphor-react'
 
-export interface AvatarProps extends ComponentProps<typeof AvatarRadix.Image> {}
+export interface AvatarProps extends ComponentProps<typeof Image> {}
 
 export function Avatar(props: AvatarProps) {
   return (
-    <AvatarRadix.Root className="rounded-full inline-block w-16 h-16 overflow-hidden">
-      <AvatarRadix.Image
+    <Root className="rounded-full inline-block w-16 h-16 overflow-hidden">
+      <Image
         className="w-full h-full object-cover rounded-[inherit]"
+        alt=""
         {...props}
       />
 
-      <AvatarRadix.AvatarFallback
+      <Fallback
         className="w-full h-full flex items-center justify-center bg-zinc-600 text-zinc-800 [&>svg]:w-6 [&>svg]:h-6"
         delayMs={600}
       >
         <User />
-      </AvatarRadix.AvatarFallback>
-    </AvatarRadix.Root>
+      </Fallback>
+    </Root>
   )
 }
 
