@@ -1,4 +1,13 @@
-import * as AlertDialogRadix from '@radix-ui/react-alert-dialog'
+'use client'
+
+import {
+  Root,
+  Portal,
+  Overlay,
+  Content,
+  Title,
+  Description
+} from '@radix-ui/react-alert-dialog'
 import { Button, ButtonProps } from './Button'
 import { forwardRef, useImperativeHandle, useState } from 'react'
 
@@ -33,10 +42,10 @@ export const AlertDialog = forwardRef(
     }
 
     return (
-      <AlertDialogRadix.Root open={open} onOpenChange={setOpen}>
-        <AlertDialogRadix.Portal>
-          <AlertDialogRadix.Overlay className="bg-black opacity-50 fixed inset-0 data-[state=open]:animate-overlayShow" />
-          <AlertDialogRadix.Content
+      <Root open={open} onOpenChange={setOpen}>
+        <Portal>
+          <Overlay className="bg-black opacity-50 fixed inset-0 data-[state=open]:animate-overlayShow" />
+          <Content
             className={`
             bg-zinc-900 
             rounded-md 
@@ -48,12 +57,12 @@ export const AlertDialog = forwardRef(
             data-[state=open]:animate-contentShow
             focus:outline-none`}
           >
-            <AlertDialogRadix.Title className="mx-0 mt-0 mb-2 text-zinc-100 text-2xl font-bold">
+            <Title className="mx-0 mt-0 mb-2 text-zinc-100 text-2xl font-bold">
               {titulo}
-            </AlertDialogRadix.Title>
-            <AlertDialogRadix.Description className="mb-5 text-zinc-100 text-base leading-5">
+            </Title>
+            <Description className="mb-5 text-zinc-100 text-base leading-5">
               {descricao}
-            </AlertDialogRadix.Description>
+            </Description>
             <div className="flex justify-end gap-3">
               <Button variant="back" onClick={() => setOpen(false)}>
                 Cancelar
@@ -62,9 +71,9 @@ export const AlertDialog = forwardRef(
                 {buttonText}
               </Button>
             </div>
-          </AlertDialogRadix.Content>
-        </AlertDialogRadix.Portal>
-      </AlertDialogRadix.Root>
+          </Content>
+        </Portal>
+      </Root>
     )
   }
 )

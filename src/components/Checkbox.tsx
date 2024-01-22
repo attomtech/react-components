@@ -1,3 +1,5 @@
+'use client'
+
 import { ComponentProps } from 'react'
 import { Root, CheckboxIndicator } from '@radix-ui/react-checkbox'
 import { Check } from 'phosphor-react'

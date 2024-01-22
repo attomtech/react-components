@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Tr } from './Tr'
 import { Thead } from './Thead'
