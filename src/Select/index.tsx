@@ -15,10 +15,12 @@ import {
 import { ArrowDown, ArrowUp, Check } from 'phosphor-react'
 import React, { ComponentProps, ElementRef, forwardRef } from 'react'
 
-interface SelectItemProps extends ComponentProps<typeof Item> {}
+interface SelectItemProps extends ComponentProps<typeof Item> {
+  className?: string
+}
 
 const SelectItem = forwardRef<ElementRef<typeof Item>, SelectItemProps>(
-  ({ children, ...props }, forwardedRef) => {
+  ({ children, className = '', ...props }, forwardedRef) => {
     return (
       <Item
         className={`
@@ -28,8 +30,10 @@ const SelectItem = forwardRef<ElementRef<typeof Item>, SelectItemProps>(
         flex items-center
         px-3 py-1
         relative select-none
-        data-[disabled]:text-zinc-200 data-[disabled]:pointer-events-none
+        datadisabled:text-zinc-200 datadisabled:pointer-events-none
         data-[highlighted]:outline-none data-[highlighted]:bg-zinc-100 data-[highlighted]:text-zinc-900 data-[highlighted]:cursor-pointer
+        
+        ${className}
       `}
         {...props}
         ref={forwardedRef}
@@ -54,21 +58,14 @@ export interface SelectProps {
   value: string
   onValueChange: () => void
   options: SelectOption[]
-  variant?: 'primary' | 'success' | 'warning' | 'danger'
-}
-
-const variantClasses = {
-  primary: 'focus:border-sky-500',
-  success: 'focus:border-emerald-500',
-  warning: 'focus:border-yellow-500',
-  danger: 'focus:border-red-500'
+  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
 }
 
 const scrollButtonsClasses =
   'flex items-center justify-center h-6 bg-white text-zinc-900 cursor-default'
 
 export function Select({
-  variant = 'primary',
+  variant = 'default',
   value,
   onValueChange,
   options
@@ -76,6 +73,7 @@ export function Select({
   return (
     <Root value={value} onValueChange={onValueChange}>
       <SelectTrigger
+        data-variant={variant}
         className={`
         inline-flex items-center justify-between
         w-full
@@ -88,8 +86,10 @@ export function Select({
         hover:bg-zinc-800
         focus:shadow-[0_0_0_2px] focus:shadow-black focus:border focus:border-solid
         data-[placeholder]:text-white
-        data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed
-        ${variantClasses[variant]}
+        datadisabled:opacity-50 datadisabled:cursor-not-allowed
+        
+        primary:focus:border-sky-500 success:focus:border-emerald-500
+        warning:focus:border-yellow-500 danger:focus:border-red-500
       `}
       >
         <div className="flex justify-between py-0 px-4 w-full">

@@ -105,6 +105,8 @@ module.exports = {
       addVariant('warning', '&[data-variant=warning]')
       addVariant('danger', '&[data-variant=danger]')
       addVariant('default', '&[data-variant="default"]')
+      addVariant('datachecked', '&[data-state="checked"]')
+      addVariant('datadisabled', '&[data-disabled]')
     })
   ]
 }

@@ -1,13 +1,20 @@
 import { BaseHTMLAttributes, ReactNode } from 'react'
 
-export interface BoxProps extends BaseHTMLAttributes<HTMLDivElement> {
+export interface BoxProps
+  extends BaseHTMLAttributes<HTMLDivElement | HTMLFormElement> {
   children: ReactNode
   className?: string
+  as?: 'div' | 'form'
 }
 
-export function Box({ children, className, ...props }: BoxProps) {
+export function Box({
+  children,
+  className,
+  as: Comp = 'div',
+  ...props
+}: BoxProps) {
   return (
-    <div
+    <Comp
       className={`
         p-6 
         rounded-md 
@@ -18,7 +25,7 @@ export function Box({ children, className, ...props }: BoxProps) {
       {...props}
     >
       {children}
-    </div>
+    </Comp>
   )
 }
 

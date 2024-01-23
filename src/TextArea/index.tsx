@@ -2,24 +2,18 @@ import { TextareaHTMLAttributes } from 'react'
 
 export interface TextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  variant?: 'primary' | 'success' | 'warning' | 'danger'
-}
-
-const variantClasses = {
-  primary: 'focus:border-sky-300',
-  success: 'focus:border-emerald-300',
-  warning: 'focus:border-yellow-300',
-  danger: 'focus:border-red-300'
+  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
 }
 
 export function TextArea({
   children,
-  variant = 'primary',
+  variant = 'default',
   className = '',
   ...props
 }: TextAreaProps) {
   return (
     <textarea
+      data-variant={variant}
       className={`
         w-full
         bg-zinc-900 
@@ -29,7 +23,10 @@ export function TextArea({
         focus:outline-0
         disabled:opacity-5 disabled:cursor-not-allowed
         placeholder:text-zinc-400
-        ${variantClasses[variant]}
+        
+        primary:focus:border-sky-300 success:focus:border-emerald-300
+        warning:focus:border-yellow-300 danger:focus:border-red-300
+        
         ${className}
         `}
       {...props}

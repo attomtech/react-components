@@ -6,41 +6,49 @@ export interface PaginationProps {
   currentPage: number
   pages: number
   onPageChanged: (page: number) => void
+  className?: string
 }
 
-export const Pagination = (props: PaginationProps) => {
+export const Pagination = ({
+  currentPage,
+  pages,
+  onPageChanged,
+  className = ''
+}: PaginationProps) => {
   function getPages(): number[] {
-    if (props.pages <= 5) {
-      return Array.from({ length: props.pages }, (_, index) => index + 1)
+    if (pages <= 5) {
+      return Array.from({ length: pages }, (_, index) => index + 1)
     }
 
     const beforePages =
-      props.currentPage - 2 > 0 && props.currentPage + 2 <= props.pages
+      currentPage - 2 > 0 && currentPage + 2 <= pages
         ? 2
-        : props.currentPage - 2 <= 0
-          ? props.currentPage - 1
-          : 4 - (props.pages - props.currentPage)
+        : currentPage - 2 <= 0
+          ? currentPage - 1
+          : 4 - (pages - currentPage)
     const afterPages = 4 - beforePages
 
-    const pages = []
-    pages.push(props.currentPage)
+    const currentPages = []
+    currentPages.push(currentPage)
     Array.from({ length: beforePages }, (_, index) => index + 1).forEach(
-      (value) => pages.push(props.currentPage - value)
+      (value) => currentPages.push(currentPage - value)
     )
     Array.from({ length: afterPages }, (_, index) => index + 1).forEach(
-      (value) => pages.push(props.currentPage + value)
+      (value) => currentPages.push(currentPage + value)
     )
-    pages.sort()
+    currentPages.sort()
 
-    return pages
+    return currentPages
   }
 
   return (
-    <div className="flex justify-center items-center gap-2.5 mt-4 w-full">
+    <div
+      className={`flex justify-center items-center gap-2.5 mt-4 w-full ${className}`}
+    >
       <BeforeNextPage
-        disabled={props.currentPage === 1}
+        disabled={currentPage === 1}
         onClick={() => {
-          props.onPageChanged(props.currentPage - 1)
+          onPageChanged(currentPage - 1)
         }}
       >
         <ArrowLeft />
@@ -50,9 +58,9 @@ export const Pagination = (props: PaginationProps) => {
         return (
           <Page
             key={index}
-            disabled={page === props.currentPage}
+            disabled={page === currentPage}
             onClick={() => {
-              props.onPageChanged(page)
+              onPageChanged(page)
             }}
           >
             {page}
@@ -61,9 +69,9 @@ export const Pagination = (props: PaginationProps) => {
       })}
 
       <BeforeNextPage
-        disabled={props.currentPage === props.pages}
+        disabled={currentPage === pages}
         onClick={() => {
-          props.onPageChanged(props.currentPage + 1)
+          onPageChanged(currentPage + 1)
         }}
       >
         <ArrowRight />

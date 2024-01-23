@@ -1,12 +1,12 @@
 import {
-  Root,
-  Portal,
-  Overlay,
   Content,
-  Title,
-  Description
+  Description,
+  Overlay,
+  Portal,
+  Root,
+  Title
 } from '@radix-ui/react-alert-dialog'
-import { Button, ButtonProps } from './Button'
+import { Button, ButtonProps } from '../Button'
 import { forwardRef, useImperativeHandle, useState } from 'react'
 
 export interface AlertDialogProps {
@@ -62,9 +62,7 @@ export const AlertDialog = forwardRef(
               {descricao}
             </Description>
             <div className="flex justify-end gap-3">
-              <Button variant="back" onClick={() => setOpen(false)}>
-                Cancelar
-              </Button>
+              <Button onClick={() => setOpen(false)}>Cancelar</Button>
               <Button variant={variant} onClick={onConfirmHandle}>
                 {buttonText}
               </Button>

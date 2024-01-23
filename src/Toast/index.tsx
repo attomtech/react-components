@@ -13,7 +13,7 @@ export interface ToastProps {
   description: string
   action?: ReactElement
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
-  variant?: 'primary' | 'success' | 'warning' | 'danger'
+  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
 }
 
 export interface ToastFunctions {
