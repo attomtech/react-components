@@ -4,6 +4,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
   padding?: 'sm' | 'md' | 'lg'
+  hasError?: boolean
 }
 
 export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
@@ -12,6 +13,7 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
       prefix,
       variant = 'default',
       padding = 'md',
+      hasError = false,
       className,
       ...props
     }: TextInputProps,
@@ -21,6 +23,7 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
       <div
         data-variant={variant}
         data-padding={padding}
+        data-error={hasError}
         className={`
           bg-zinc-900
           rounded-sm
@@ -37,6 +40,8 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
           data-[padding=sm]:py-2 data-[padding=sm]:px-3
           data-[padding=md]:py-3 data-[padding=md]:px-4
           data-[padding=lg]:py-4 data-[padding=lg]:px-5
+          
+          data-[error=true]:border-red-500 data-[error=true]:has-[input:focus]:border-red-500
           
           ${className}
         `}
