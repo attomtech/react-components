@@ -83,6 +83,12 @@ module.exports = {
           to: {
             transform: 'translateX(-24px)'
           }
+        },
+        scale: {
+          to: {
+            transform: 'scale(3)',
+            opacity: '0.6'
+          }
         }
       },
       animation: {
@@ -94,7 +100,8 @@ module.exports = {
         slideInLeft: 'slideInLeft 150ms cubic-bezier(0.16, 1, 0.3, 1)',
         slideInRight: 'slideInRight 150ms cubic-bezier(0.16, 1, 0.3, 1)',
         slideOutLeft: 'slideOutLeft 100ms ease-out',
-        slideOutRight: 'slideOutRight 100ms ease-out'
+        slideOutRight: 'slideOutRight 100ms ease-out',
+        scale: 'scale 0.8s infinite alternate'
       }
     }
   },

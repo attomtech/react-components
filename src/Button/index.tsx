@@ -4,6 +4,23 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
   size?: 'sm' | 'md' | 'lg'
+  loading?: boolean
+}
+
+function Ball() {
+  return (
+    <span className="inline-block w-1 h-1 bg-zinc-200 rounded-full mx-1.5 my-0 animate-scale"></span>
+  )
+}
+
+function Loading() {
+  return (
+    <>
+      <Ball />
+      <Ball />
+      <Ball />
+    </>
+  )
 }
 
 export function Button({
@@ -11,12 +28,14 @@ export function Button({
   className = '',
   variant = 'default',
   size = 'md',
+  loading = false,
   ...props
 }: ButtonProps) {
   return (
     <button
       data-variant={variant}
       data-size={size}
+      data-loading={loading}
       className={`
           rounded-md 
           text-sm text-center text-white
@@ -39,11 +58,13 @@ export function Button({
           data-[size=sm]:h-9
           data-[size-md]:h-11
           data-[size-lg]:h-14
+          
+          data-[loading=true]:opacity-70 data-[loading=true]:cursor-not-allowed
           ${className}
       `}
       {...props}
     >
-      {children}
+      {loading ? <Loading /> : children}
     </button>
   )
 }
