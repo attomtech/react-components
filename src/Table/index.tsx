@@ -60,7 +60,7 @@ export const Table = (props: TableProps) => {
             )
           })) || (
           <tr>
-            <td colSpan={props.columns.length} className="text-center">
+            <td colSpan={props.columns.length} className="text-center p-4">
               {props.noDataMessage || 'Nenhum registro encontrado'}
             </td>
           </tr>
