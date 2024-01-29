@@ -7,9 +7,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean
 }
 
-function Ball() {
+function Ball({ className }: any) {
   return (
-    <span className="inline-block w-1 h-1 bg-zinc-200 rounded-full mx-1.5 my-0 animate-scale"></span>
+    <span
+      className={`inline-block w-1 h-1 bg-white rounded-full mx-1.5 my-0 animate-scale ${className}`}
+    ></span>
   )
 }
 
@@ -17,8 +19,8 @@ function Loading() {
   return (
     <>
       <Ball />
-      <Ball />
-      <Ball />
+      <Ball className="animation-delay-200" />
+      <Ball className="animation-delay-[400ms]" />
     </>
   )
 }
@@ -56,10 +58,10 @@ export function Button({
           default:enabled:enabled:text-zinc-100 default:enabled:hover:text-white default:disabled:text-zinc-600 default:disabled:bg-transparent
           
           data-[size=sm]:h-9
-          data-[size-md]:h-11
-          data-[size-lg]:h-14
+          data-[size=md]:h-11
+          data-[size=lg]:h-14
           
-          data-[loading=true]:opacity-70 data-[loading=true]:cursor-not-allowed
+          loading:!pointer-events-none loading:cursor-not-allowed
           ${className}
       `}
       {...props}

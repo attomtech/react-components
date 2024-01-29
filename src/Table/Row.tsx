@@ -28,6 +28,7 @@ interface RowProps extends TableRow {
   onEditClicked?: (id: string) => void
   onDeleteClicked?: (id: string) => void
   extraActionButtons?: Array<ExtraActionButtonsProps>
+  hideActionButtons?: boolean
 }
 
 export function Row({
@@ -38,7 +39,8 @@ export function Row({
   id,
   onDeleteClicked,
   onEditClicked,
-  extraActionButtons
+  extraActionButtons,
+  hideActionButtons
 }: RowProps) {
   function isExtraButtonDisabled(id: string) {
     if (!extraButtonConfig) {
@@ -63,46 +65,48 @@ export function Row({
           </Td>
         )
       })}
-      <Td className={`flex justify-center gap-5`}>
-        <IconContext.Provider
-          value={{
-            size: 20
-          }}
-        >
-          <ActionButton
-            disabled={editEnabled === false}
-            variant="default"
-            onClick={() => {
-              onEditClicked && onEditClicked(id)
+      {!hideActionButtons && (
+        <Td className="!flex justify-center md:justify-end gap-3">
+          <IconContext.Provider
+            value={{
+              size: 20
             }}
           >
-            <Pencil />
-          </ActionButton>
+            <ActionButton
+              disabled={editEnabled === false}
+              variant="default"
+              onClick={() => {
+                onEditClicked && onEditClicked(id)
+              }}
+            >
+              <Pencil />
+            </ActionButton>
 
-          {extraActionButtons &&
-            extraActionButtons.map((button, index) => {
-              return (
-                <ActionButton
-                  key={index}
-                  disabled={isExtraButtonDisabled(button.id)}
-                  onClick={() => button.onClickHandle(id)}
-                  {...button}
-                >
-                  {button.icon}
-                </ActionButton>
-              )
-            })}
+            {extraActionButtons &&
+              extraActionButtons.map((button, index) => {
+                return (
+                  <ActionButton
+                    key={index}
+                    disabled={isExtraButtonDisabled(button.id)}
+                    onClick={() => button.onClickHandle(id)}
+                    {...button}
+                  >
+                    {button.icon}
+                  </ActionButton>
+                )
+              })}
 
-          <ActionButton
-            disabled={deleteEnabled === false}
-            onClick={() => {
-              onDeleteClicked && onDeleteClicked(id)
-            }}
-          >
-            <Trash />
-          </ActionButton>
-        </IconContext.Provider>
-      </Td>
+            <ActionButton
+              disabled={deleteEnabled === false}
+              onClick={() => {
+                onDeleteClicked && onDeleteClicked(id)
+              }}
+            >
+              <Trash />
+            </ActionButton>
+          </IconContext.Provider>
+        </Td>
+      )}
     </Tr>
   )
 }

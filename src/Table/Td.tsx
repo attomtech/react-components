@@ -10,10 +10,12 @@ export function Td({ children, className, label }: TdProps) {
       data-label={label}
       className={`
         py-1 px-4 
-        desktop:first:rounded-tl-md desktop:first:rounded-bl-md desktop:last:rounded-tr-md desktop:rounded-br-md
-        tablet:border tablet:border-solid tablet:border-zinc-300 tablet:block tablet:text-xs tablet:text-right
-        tablet:before:content-[attr(data-label)] tablet:before:float-left tablet:before:font-bold tablet:before:uppercase
-        tablet:last:border-b-0 
+        border border-solid border-zinc-300 block text-xs text-right
+        before:content-[attr(data-label)] before:float-left before:font-bold before:uppercase
+        last:border-b-0 
+        
+        md:border-0 md:table-cell md:text-base md:text-left md:before:content-[]
+        md:first:rounded-tl-md md:first:rounded-bl-md md:last:rounded-tr-md md:last:rounded-br-md
         ${className}
      `}
     >

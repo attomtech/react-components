@@ -11,6 +11,8 @@ export interface TableProps {
   onEditClicked?: (id: string) => void
   onDeleteClicked?: (id: string) => void
   extraActionButtons?: Array<ExtraActionButtonsProps>
+  hideActionButtons?: boolean
+  noDataMessage?: string
 }
 
 export const Table = (props: TableProps) => {
@@ -18,7 +20,11 @@ export const Table = (props: TableProps) => {
   const [columDirection, setColumnDirection] = useState<columnDirection>()
 
   return (
-    <table className="w-full text-white border-collapse tablet:border-0 tablet:[&>caption]:text-sm">
+    <table
+      className={`
+      w-full text-white border-collapse border-0 [&>caption]:text-sm
+    `}
+    >
       <Thead>
         <Tr>
           {props.columns.map((column, index) => {
@@ -40,17 +46,25 @@ export const Table = (props: TableProps) => {
         </Tr>
       </Thead>
       <tbody>
-        {props.rows.map((row, index) => {
-          return (
-            <Row
-              key={index}
-              {...row}
-              onDeleteClicked={props.onDeleteClicked}
-              onEditClicked={props.onEditClicked}
-              extraActionButtons={props.extraActionButtons}
-            />
-          )
-        })}
+        {(props.rows.length > 0 &&
+          props.rows.map((row, index) => {
+            return (
+              <Row
+                key={index}
+                {...row}
+                onDeleteClicked={props.onDeleteClicked}
+                onEditClicked={props.onEditClicked}
+                extraActionButtons={props.extraActionButtons}
+                hideActionButtons={props.hideActionButtons}
+              />
+            )
+          })) || (
+          <tr>
+            <td colSpan={props.columns.length} className="text-center">
+              {props.noDataMessage || 'Nenhum registro encontrado'}
+            </td>
+          </tr>
+        )}
       </tbody>
     </table>
   )
@@ -59,3 +73,5 @@ export const Table = (props: TableProps) => {
 Table.displayName = 'Table'
 
 export default Table
+export * from './Row'
+export * from './Column'

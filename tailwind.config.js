@@ -4,10 +4,6 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
-    screens: {
-      tablet: { max: '640px' },
-      desktop: '641px'
-    },
     extend: {
       keyframes: {
         overlayShow: {
@@ -114,6 +110,21 @@ module.exports = {
       addVariant('default', '&[data-variant="default"]')
       addVariant('datachecked', '&[data-state="checked"]')
       addVariant('datadisabled', '&[data-disabled]')
+      addVariant('loading', '&[data-loading=true]')
+    }),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'animation-delay': (value) => {
+            return {
+              'animation-delay': value
+            }
+          }
+        },
+        {
+          values: theme('transitionDelay')
+        }
+      )
     })
   ]
 }

@@ -14,11 +14,11 @@ export interface AlertDialogProps {
   descricao: string
   variant: ButtonProps['variant']
   buttonText: string
-  onConfirm: () => void
+  onConfirm: (params: object) => void
 }
 
 export interface AlertDialogFunctions {
-  open: () => void
+  open: (params: object) => void
 }
 
 export const AlertDialog = forwardRef(
@@ -27,16 +27,18 @@ export const AlertDialog = forwardRef(
     ref
   ) => {
     const [open, setOpen] = useState<boolean>(false)
+    const [params, setParams] = useState<object>({})
 
     useImperativeHandle(ref, () => ({
-      open() {
+      open(params: object) {
+        setParams(params)
         setOpen(true)
       }
     }))
 
     function onConfirmHandle() {
       setOpen(false)
-      onConfirm()
+      onConfirm(params)
     }
 
     return (

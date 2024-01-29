@@ -5,15 +5,25 @@ import { Page } from './Page'
 export interface PaginationProps {
   currentPage: number
   pages: number
+  total?: number
+  perPage?: number
+  numberOfElements?: number
   onPageChanged: (page: number) => void
   className?: string
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger'
+  hideCounter?: boolean
 }
 
 export const Pagination = ({
   currentPage,
   pages,
+  total,
+  perPage = 0,
+  numberOfElements = 0,
   onPageChanged,
-  className = ''
+  variant,
+  className = '',
+  hideCounter
 }: PaginationProps) => {
   function getPages(): number[] {
     if (pages <= 5) {
@@ -42,40 +52,50 @@ export const Pagination = ({
   }
 
   return (
-    <div
-      className={`flex justify-center items-center gap-2.5 mt-4 w-full ${className}`}
-    >
-      <BeforeNextPage
-        disabled={currentPage === 1}
-        onClick={() => {
-          onPageChanged(currentPage - 1)
-        }}
+    <div className="flex flex-col justify-center items-center gap-6">
+      <div
+        className={`flex justify-center items-center gap-2.5 mt-4 w-full ${className}`}
       >
-        <ArrowLeft />
-      </BeforeNextPage>
+        <BeforeNextPage
+          disabled={currentPage === 1}
+          onClick={() => {
+            onPageChanged(currentPage - 1)
+          }}
+        >
+          <ArrowLeft />
+        </BeforeNextPage>
 
-      {getPages().map((page, index) => {
-        return (
-          <Page
-            key={index}
-            disabled={page === currentPage}
-            onClick={() => {
-              onPageChanged(page)
-            }}
-          >
-            {page}
-          </Page>
-        )
-      })}
+        {getPages().map((page, index) => {
+          return (
+            <Page
+              key={index}
+              disabled={page === currentPage}
+              onClick={() => {
+                onPageChanged(page)
+              }}
+              variant={variant}
+            >
+              {page}
+            </Page>
+          )
+        })}
 
-      <BeforeNextPage
-        disabled={currentPage === pages}
-        onClick={() => {
-          onPageChanged(currentPage + 1)
-        }}
-      >
-        <ArrowRight />
-      </BeforeNextPage>
+        <BeforeNextPage
+          disabled={currentPage === pages}
+          onClick={() => {
+            onPageChanged(currentPage + 1)
+          }}
+        >
+          <ArrowRight />
+        </BeforeNextPage>
+      </div>
+
+      {!hideCounter && (
+        <div className="text-zinc-200 text-sm">
+          {(currentPage - 1) * perPage + 1} -{' '}
+          {(currentPage - 1) * perPage + numberOfElements} de {total}
+        </div>
+      )}
     </div>
   )
 }
