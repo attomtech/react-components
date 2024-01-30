@@ -63,14 +63,14 @@ export default function InputFile({
         ref={ref}
         className="hidden"
       />
-      {filename && (
+      {(filename || preview) && (
         <div className="flex justify-center items-start gap-4 p-6">
           {preview ? (
             <img src={preview} width={800} height={800} alt="" />
           ) : (
             <div className="flex flex-col justify-center items-center gap-4">
               <File className="text-white/50" size={96} />
-              <Text>{filename}</Text>
+              <Text>{String(filename)}</Text>
             </div>
           )}
           <span
