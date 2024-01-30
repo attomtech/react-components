@@ -6,6 +6,7 @@ export interface TableColumn {
   id: string
   label: string
   clickable?: boolean
+  className?: string
 }
 
 interface ColumnProps extends TableColumn {
@@ -18,6 +19,7 @@ export function Column({
   id,
   label,
   clickable,
+  className,
   columnClicked,
   columnDirection,
   onColumnClicked
@@ -36,7 +38,7 @@ export function Column({
 
   return (
     <th
-      className="py-3 px-4 data-[clickable=true]:cursor-pointer"
+      className={`py-3 px-4 data-[clickable=true]:cursor-pointer ${className}`}
       onClick={() => onColumnClickedHandler(id, clickable)}
       data-clickable={clickable}
     >
