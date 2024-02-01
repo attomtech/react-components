@@ -1,9 +1,11 @@
 import { BaseHTMLAttributes } from 'react'
 
-export interface TextProps extends BaseHTMLAttributes<HTMLParagraphElement> {
+export interface TextProps
+  extends BaseHTMLAttributes<HTMLParagraphElement & HTMLLabelElement> {
   children: string
-  as?: 'p' | 'strong'
+  as?: 'p' | 'strong' | 'label'
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl'
+  htmlFor?: string
 }
 
 export function Text({

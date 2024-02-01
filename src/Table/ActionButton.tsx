@@ -9,7 +9,7 @@ export function ActionButton(props: ActionButtonProps) {
   return (
     <button
       className={`
-        p-1 cursor-pointer disabled:opacity-0
+        p-1 cursor-pointer disabled:opacity-0 disabled:cursor-auto
         [&>svg]:default:text-zinc-500 [&>svg]:default:text-lg hover:[&>svg]:default:text-zinc-200
         [&>svg]:primary:text-sky-500 hover:[&>svg]:primary:text-sky-300
         [&>svg]:success:text-emerald-500 hover:[&>svg]:success:text-emerald-300

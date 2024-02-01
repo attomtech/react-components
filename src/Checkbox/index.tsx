@@ -22,7 +22,7 @@ export function Checkbox({ variant = 'default', ...props }: CheckboxProps) {
         datachecked:focus:border-2 datachecked:focus:border-solid
         
         primary:datachecked:bg-sky-500 primary:datachecked:border-sky-500 primary:focus:border-sky-500
-        success:datachecked::bg-emerald-500 success:datachecked::border-emerald-500 success:focus:border-emerald-500
+        success:datachecked:bg-emerald-500 success:datachecked:border-emerald-500 success:focus:border-emerald-500
         warning:datachecked:bg-yellow-500 warning:datachecked:border-yellow-500 warning:focus:border-yellow-500
         danger:datachecked:bg-red-500 danger:datachecked:border-red-500 danger:focus:border-red-500
     `}
