@@ -101,7 +101,7 @@ export function Select({
       </SelectTrigger>
 
       <Portal>
-        <Content className="overflow-hidden bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)]">
+        <Content className="mt-10 overflow-hidden bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)]">
           <ScrollUpButton className={scrollButtonsClasses}>
             <ArrowUp />
           </ScrollUpButton>

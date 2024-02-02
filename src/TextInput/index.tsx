@@ -5,6 +5,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
   padding?: 'sm' | 'md' | 'lg'
   hasError?: boolean
+  onOpen?: () => void
 }
 
 export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
@@ -15,12 +16,14 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
       padding = 'md',
       hasError = false,
       className,
+      onOpen,
       ...props
     }: TextInputProps,
     ref
   ) => {
     return (
       <div
+        data-modal={!!onOpen}
         data-variant={variant}
         data-padding={padding}
         data-error={hasError}
@@ -43,13 +46,19 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
           
           data-[error=true]:border-red-500 data-[error=true]:has-[input:focus]:border-red-500
           
+          data-[modal=true]:cursor-pointer
+          
           ${className}
         `}
+        onClick={() => {
+          onOpen && onOpen()
+        }}
       >
         {!!prefix && (
           <span className="text-sm text-zinc-400 font-normal">{prefix}</span>
         )}
         <input
+          readOnly={!!onOpen}
           className={`
           text-sm text-white font-normal
           bg-transparent
@@ -58,6 +67,8 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
           focus:outline-0
           disabled:cursor-not-allowed
           placeholder:text-zinc-400
+          
+          read-only:pointer-events-none
         `}
           ref={ref}
           {...props}

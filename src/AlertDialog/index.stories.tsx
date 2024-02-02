@@ -16,31 +16,11 @@ export default {
     buttonText: 'Botão',
     onConfirm: () => {
       alert('Clicou')
-    }
+    },
+    size: 'md',
+    hideButtons: true
   },
-  argTypes: {
-    titulo: {
-      control: {
-        type: 'text'
-      }
-    },
-    descricao: {
-      control: {
-        type: 'text'
-      }
-    },
-    buttonText: {
-      control: {
-        type: 'text'
-      }
-    },
-    variant: {
-      options: ['primary', 'success', 'warning', 'danger'],
-      control: {
-        type: 'inline-radio'
-      }
-    }
-  },
+  argTypes: {},
   decorators: [
     (Story: any, options) => {
       const ref = useRef<AlertDialogFunctions>()
@@ -51,7 +31,7 @@ export default {
 
           <Button
             onClick={() => {
-              ref.current?.open()
+              ref.current?.open({})
             }}
           >
             Abrir
