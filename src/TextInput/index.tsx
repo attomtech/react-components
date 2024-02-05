@@ -1,4 +1,4 @@
-import { ElementRef, forwardRef, InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string
@@ -6,9 +6,10 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   padding?: 'sm' | 'md' | 'lg'
   hasError?: boolean
   onOpen?: () => void
+  mask?: string
 }
 
-export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
       prefix,
@@ -17,6 +18,7 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
       hasError = false,
       className,
       onOpen,
+      mask,
       ...props
     }: TextInputProps,
     ref
@@ -58,18 +60,18 @@ export const TextInput = forwardRef<ElementRef<'input'>, TextInputProps>(
           <span className="text-sm text-zinc-400 font-normal">{prefix}</span>
         )}
         <input
-          readOnly={!!onOpen}
+          readOnly={onOpen !== undefined}
           className={`
-          text-sm text-white font-normal
-          bg-transparent
-          border-0
-          w-full
-          focus:outline-0
-          disabled:cursor-not-allowed
-          placeholder:text-zinc-400
-          
-          read-only:pointer-events-none
-        `}
+                text-sm text-white font-normal
+                bg-transparent
+                border-0
+                w-full
+                focus:outline-0
+                disabled:cursor-not-allowed
+                placeholder:text-zinc-400
+                
+                read-only:pointer-events-none
+              `}
           ref={ref}
           {...props}
         />

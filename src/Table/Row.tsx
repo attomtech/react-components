@@ -65,22 +65,24 @@ export function Row({
           </Td>
         )
       })}
-      {!hideActionButtons && (
+      {(!hideActionButtons || extraActionButtons) && (
         <Td className="!flex justify-center md:justify-end gap-3">
           <IconContext.Provider
             value={{
               size: 20
             }}
           >
-            <ActionButton
-              disabled={editEnabled === false}
-              variant="default"
-              onClick={() => {
-                onEditClicked && onEditClicked(id)
-              }}
-            >
-              <Pencil />
-            </ActionButton>
+            {!hideActionButtons && (
+              <ActionButton
+                disabled={editEnabled === false}
+                variant="default"
+                onClick={() => {
+                  onEditClicked && onEditClicked(id)
+                }}
+              >
+                <Pencil />
+              </ActionButton>
+            )}
 
             {extraActionButtons &&
               extraActionButtons.map((button, index) => {
@@ -96,14 +98,16 @@ export function Row({
                 )
               })}
 
-            <ActionButton
-              disabled={deleteEnabled === false}
-              onClick={() => {
-                onDeleteClicked && onDeleteClicked(id)
-              }}
-            >
-              <Trash />
-            </ActionButton>
+            {!hideActionButtons && (
+              <ActionButton
+                disabled={deleteEnabled === false}
+                onClick={() => {
+                  onDeleteClicked && onDeleteClicked(id)
+                }}
+              >
+                <Trash />
+              </ActionButton>
+            )}
           </IconContext.Provider>
         </Td>
       )}

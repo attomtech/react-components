@@ -9,13 +9,15 @@ import {
 import { Button, ButtonProps } from '../Button'
 import { forwardRef, ReactNode, useImperativeHandle, useState } from 'react'
 
+import { X } from 'phosphor-react'
+
 export interface AlertDialogProps {
   titulo: string
   descricao?: string
   variant?: ButtonProps['variant']
   buttonText?: string
   onConfirm?: (params: object) => void
-  size?: 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg'
   hideButtons?: boolean
   children?: ReactNode
 }
@@ -33,7 +35,7 @@ export const AlertDialog = forwardRef(
       variant = 'default',
       buttonText = 'Confirmar',
       onConfirm,
-      size = 'md',
+      size = 'sm',
       hideButtons = false,
       children
     }: AlertDialogProps,
@@ -72,15 +74,17 @@ export const AlertDialog = forwardRef(
             shadow-[hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px],
             
             w-[90vw] max-h-[85vh]
-            data-[size=md]:max-w-[500px] 
-            data-[size=lg]:max-w-[90vw] 
+            data-[size=sm]:max-w-[500px] 
+            data-[size=md]:max-w-[1000px] 
                         
             p-6
             data-[state=open]:animate-contentShow
             focus:outline-none`}
           >
-            <Title className="mx-0 mt-0 mb-2 text-zinc-100 text-2xl font-bold">
+            <Title className="mx-0 mt-0 mb-2 text-zinc-100 text-2xl font-bold flex justify-between">
               {titulo}
+
+              <X onClick={() => setOpen(false)} className="cursor-pointer" />
             </Title>
             {descricao && (
               <Description className="mb-5 text-zinc-100 text-base leading-5">

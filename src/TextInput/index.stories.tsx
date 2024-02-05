@@ -5,7 +5,9 @@ export default {
   title: 'Form/Text Input',
   component: TextInput,
   tags: ['autodocs'],
-  args: {},
+  args: {
+    onOpen: undefined
+  },
   argTypes: {}
 } as Meta<TextInputProps>
 

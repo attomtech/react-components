@@ -8,7 +8,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.tsx src/**/index.tsx src/index.css --format esm,cjs --dts --external react",
+    "build": "NODE_OPTIONS='--max-old-space-size=16384' tsup src/index.tsx src/**/index.tsx src/index.css --format esm,cjs --dts --external react",
     "dev": "tsup src/index.tsx src/**/index.tsx src/index.css --format esm,cjs --dts --watch",
     "storybook": "storybook dev -p 6006",
     "lint": "eslint src/**/*.ts* --fix",
@@ -50,7 +50,10 @@
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
+    "@react-input/mask": "^1.0.20",
     "@stitches/react": "^1.2.8",
     "@storybook/addon-a11y": "^7.6.10",
     "clsx": "^2.1.0"

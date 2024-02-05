@@ -10,7 +10,8 @@ import {
   ItemText,
   Root,
   Value,
-  Portal
+  Portal,
+  SelectProps as ReactSelectProps
 } from '@radix-ui/react-select'
 import { ArrowDown, ArrowUp, Check } from 'phosphor-react'
 import React, { ComponentProps, ElementRef, forwardRef } from 'react'
@@ -54,11 +55,10 @@ export interface SelectOption {
   label: string
 }
 
-export interface SelectProps {
-  value: string
-  onValueChange: () => void
+export interface SelectProps extends ReactSelectProps {
   options: SelectOption[]
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
+  placeholder?: string
 }
 
 const scrollButtonsClasses =
@@ -66,19 +66,19 @@ const scrollButtonsClasses =
 
 export function Select({
   variant = 'default',
-  value,
-  onValueChange,
-  options
+  options,
+  placeholder,
+  ...props
 }: SelectProps) {
   return (
-    <Root value={value} onValueChange={onValueChange}>
+    <Root {...props}>
       <SelectTrigger
         data-variant={variant}
         className={`
         inline-flex items-center justify-between
         w-full
         rounded-sm
-        py-2 px-0
+        py-3 px-0
         text-sm
         leading-normal
         bg-zinc-900 text-white
@@ -93,7 +93,7 @@ export function Select({
       `}
       >
         <div className="flex justify-between py-0 px-4 w-full">
-          <Value placeholder="Select an item" />
+          <Value placeholder={placeholder} />
           <SelectIcon className="text-white">
             <ArrowDown />
           </SelectIcon>
