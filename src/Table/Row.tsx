@@ -86,12 +86,14 @@ export function Row({
 
             {extraActionButtons &&
               extraActionButtons.map((button, index) => {
+                const { onClickHandle, ...props } = button
+
                 return (
                   <ActionButton
                     key={index}
                     disabled={isExtraButtonDisabled(button.id)}
-                    onClick={() => button.onClickHandle(id)}
-                    {...button}
+                    onClick={() => onClickHandle(id)}
+                    {...props}
                   >
                     {button.icon}
                   </ActionButton>

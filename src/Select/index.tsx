@@ -59,6 +59,7 @@ export interface SelectProps extends ReactSelectProps {
   options: SelectOption[]
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default'
   placeholder?: string
+  className?: string
 }
 
 const scrollButtonsClasses =
@@ -68,6 +69,7 @@ export function Select({
   variant = 'default',
   options,
   placeholder,
+  className,
   ...props
 }: SelectProps) {
   return (
@@ -75,6 +77,7 @@ export function Select({
       <SelectTrigger
         data-variant={variant}
         className={`
+        ${className}
         inline-flex items-center justify-between
         w-full
         rounded-sm
@@ -84,11 +87,14 @@ export function Select({
         bg-zinc-900 text-white
         shadow-[0_2px_10px] shadow-zinc-900
         hover:bg-zinc-800
-        focus:shadow-[0_0_0_2px] focus:shadow-black focus:border focus:border-solid
+        focus:shadow-[0_0_0_2px] focus:shadow-black 
+        focus:border focus:border-solid
         data-[placeholder]:text-white
         datadisabled:opacity-50 datadisabled:cursor-not-allowed
         
-        primary:focus:border-sky-500 success:focus:border-emerald-500
+        focus-visible:outline-none
+        
+        primary:focus:!border-sky-500 success:focus:border-emerald-500
         warning:focus:border-yellow-500 danger:focus:border-red-500
       `}
       >
