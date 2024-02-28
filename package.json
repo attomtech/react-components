@@ -1,6 +1,6 @@
 {
   "name": "@attomtech/react",
-  "version": "2.1.0",
+  "version": "3.0.0-beta.23",
   "description": "",
   "author": "Paulo Cezar Motta",
   "license": "MIT",
@@ -8,21 +8,41 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup src/index.tsx --format esm,cjs --dts --watch",
+    "build": "NODE_OPTIONS='--max-old-space-size=16384' tsup src/index.tsx src/**/index.tsx src/index.css --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.tsx src/**/index.tsx src/index.css --format esm,cjs --dts --watch",
+    "storybook": "storybook dev -p 6006",
     "lint": "eslint src/**/*.ts* --fix",
     "version": "npm version --no-git-tag-version",
-    "publish": "npm publish --access=public"
+    "release": "npm publish --access=public",
+    "beta": "npm publish --access=public --no-tag"
   },
   "devDependencies": {
     "@attomtech/eslint-config": "1.0.0",
     "@attomtech/tokens": "1.1.1",
     "@attomtech/ts-config": "1.0.0",
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-interactions": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/react": "^7.6.10",
+    "@storybook/react-vite": "^7.6.10",
+    "@storybook/testing-library": "^0.2.2",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "eslint-plugin-storybook": "^0.6.15",
+    "phosphor-react": "^1.4.1",
+    "polished": "^4.2.2",
+    "postcss": "^8.4.33",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.10",
+    "tailwindcss": "^3.4.1",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^4.5.2"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
@@ -30,8 +50,13 @@
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
+    "@react-input/mask": "^1.0.20",
+    "@react-input/number-format": "^1.0.21",
     "@stitches/react": "^1.2.8",
-    "phosphor-react": "^1.4.1"
+    "@storybook/addon-a11y": "^7.6.10",
+    "clsx": "^2.1.0"
   }
 }

@@ -1,5 +1,6 @@
 {
   "extends": [
-    "@attomtech/eslint-config"
+    "@attomtech/eslint-config",
+    "plugin:storybook/recommended"
   ]
 }
