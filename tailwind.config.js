@@ -2,7 +2,10 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-  content: ['./src/**/*.tsx'],
+  content: [
+    './src/**/*.tsx',
+    './node_modules/react-tailwindcss-datepicker/dist/index.esm.js'
+  ],
   theme: {
     extend: {
       keyframes: {
@@ -80,6 +83,14 @@ module.exports = {
             transform: 'translateX(-24px)'
           }
         },
+        slideDown: {
+          from: { height: '0px' },
+          to: { height: 'var(--radix-accordion-content-height)' }
+        },
+        slideUp: {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0px' }
+        },
         scale: {
           to: {
             transform: 'scale(3)',
@@ -97,6 +108,8 @@ module.exports = {
         slideInRight: 'slideInRight 150ms cubic-bezier(0.16, 1, 0.3, 1)',
         slideOutLeft: 'slideOutLeft 100ms ease-out',
         slideOutRight: 'slideOutRight 100ms ease-out',
+        slideDown: 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        slideUp: 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
         scale: 'scale 0.8s infinite alternate'
       }
     }

@@ -6,7 +6,8 @@ export default {
   component: TextInput,
   tags: ['autodocs'],
   args: {
-    onOpen: undefined
+    onOpen: undefined,
+    placeholder: 'Texto'
   },
   argTypes: {}
 } as Meta<TextInputProps>
