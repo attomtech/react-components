@@ -52,6 +52,7 @@ export const Table = (props: TableProps) => {
               <Row
                 key={index}
                 {...row}
+                labels={props.columns.map((column) => column.label)}
                 onDeleteClicked={props.onDeleteClicked}
                 onEditClicked={props.onEditClicked}
                 extraActionButtons={props.extraActionButtons}

@@ -8,8 +8,9 @@ export interface TableRow {
   id: string
   values: Array<{
     text: string
-    label: string
+    label?: string
   }>
+  labels?: string[]
   editEnabled?: boolean
   deleteEnabled?: boolean
   extraButtonConfig?: Array<{
@@ -33,6 +34,7 @@ interface RowProps extends TableRow {
 
 export function Row({
   values,
+  labels = [],
   editEnabled,
   deleteEnabled,
   extraButtonConfig,
@@ -60,7 +62,7 @@ export function Row({
     <Tr>
       {values.map(({ text, label }, rowIndex) => {
         return (
-          <Td label={label} key={rowIndex}>
+          <Td label={label || labels[rowIndex]} key={rowIndex}>
             {text}
           </Td>
         )

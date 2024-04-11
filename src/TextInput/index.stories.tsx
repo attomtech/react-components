@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import TextInput, { TextInputProps } from '.'
+import { CaretLeft } from 'phosphor-react'
 
 export default {
   title: 'Form/Text Input',
@@ -7,7 +8,8 @@ export default {
   tags: ['autodocs'],
   args: {
     onOpen: undefined,
-    placeholder: 'Texto'
+    placeholder: 'Texto',
+    icon: CaretLeft
   },
   argTypes: {}
 } as Meta<TextInputProps>
