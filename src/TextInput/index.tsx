@@ -1,11 +1,20 @@
-import { forwardRef, InputHTMLAttributes } from 'react'
+import {
+  ElementType,
+  EventHandler,
+  forwardRef,
+  InputHTMLAttributes,
+  MouseEventHandler
+} from 'react'
 import InputContainer, { InputContainerProps } from '../InputContainer'
+import { X } from 'phosphor-react'
 
 export interface TextInputProps
   extends InputContainerProps,
     InputHTMLAttributes<HTMLInputElement> {
   prefix?: string
   mask?: string
+  icon?: ElementType | null
+  onClickIcon?: () => void
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -18,6 +27,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       hasError,
       variant,
       padding,
+      icon: Icon,
+      onClickIcon,
       ...props
     }: TextInputProps,
     ref
@@ -49,6 +60,15 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           ref={ref}
           {...props}
         />
+        {!!Icon && (
+          <Icon
+            onClick={(e: any) => {
+              e.stopPropagation()
+              onClickIcon && onClickIcon()
+            }}
+            className="text-zinc-200 cursor-pointer"
+          />
+        )}
       </InputContainer>
     )
   }

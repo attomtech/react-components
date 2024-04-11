@@ -3,8 +3,8 @@ import { ArrowDown, ArrowUp } from 'phosphor-react'
 export type columnDirection = 'ASC' | 'DESC' | undefined
 
 export interface TableColumn {
-  id: string
   label: string
+  id?: string
   clickable?: boolean
   className?: string
 }
@@ -24,27 +24,25 @@ export function Column({
   columnDirection,
   onColumnClicked
 }: ColumnProps) {
-  function onColumnClickedHandler(id: string, clickable: boolean | undefined) {
-    if (clickable) {
-      let direction: columnDirection = 'ASC'
+  function onColumnClickedHandler(id: string) {
+    let direction: columnDirection = 'ASC'
 
-      if (columnClicked === id && columnDirection === 'ASC') {
-        direction = 'DESC'
-      }
-
-      onColumnClicked(id, direction)
+    if (columnClicked === id && columnDirection === 'ASC') {
+      direction = 'DESC'
     }
+
+    onColumnClicked(id, direction)
   }
 
   return (
     <th
       className={`py-3 px-4 data-[clickable=true]:cursor-pointer ${className}`}
-      onClick={() => onColumnClickedHandler(id, clickable)}
+      onClick={() => clickable && onColumnClickedHandler(id || label)}
       data-clickable={clickable}
     >
       <div className="flex justify-start items-center gap-1">
         {label}
-        {id === columnClicked ? (
+        {clickable && id === columnClicked ? (
           columnDirection === 'ASC' ? (
             <ArrowUp />
           ) : (

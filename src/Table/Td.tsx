@@ -14,7 +14,7 @@ export function Td({ children, className, label }: TdProps) {
         before:content-[attr(data-label)] before:float-left before:font-bold before:uppercase
         last:border-b-0 
         
-        md:!border-0 md:table-cell md:text-base md:text-left md:before:content-[]
+        md:!border-0 md:table-cell md:text-base md:text-left md:before:!content-[]
         md:first:rounded-tl-md md:first:rounded-bl-md md:last:rounded-tr-md md:last:rounded-br-md
         ${className}
      `}

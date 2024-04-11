@@ -1,8 +1,8 @@
-import { BaseHTMLAttributes } from 'react'
+import { BaseHTMLAttributes, ReactNode } from 'react'
 
 export interface TextProps
   extends BaseHTMLAttributes<HTMLParagraphElement & HTMLLabelElement> {
-  children: string
+  children: ReactNode
   as?: 'p' | 'strong' | 'label'
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl'
   htmlFor?: string
