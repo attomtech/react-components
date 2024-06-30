@@ -12,6 +12,9 @@ export interface CalendarProps extends TextInputProps {
   onDateSelected: (date: Date | null) => void
   titulo?: string
   blockPast?: boolean
+  onMonthChange?: (month: number) => void
+  blockedDays?: Date[]
+  beforeOpen?: () => Promise<void>
 }
 
 export default function Calendar({
@@ -19,6 +22,9 @@ export default function Calendar({
   onDateSelected,
   titulo = 'Calendário',
   blockPast,
+  beforeOpen,
+  onMonthChange,
+  blockedDays,
   ...props
 }: CalendarProps) {
   const ref = useRef<AlertDialogFunctions>(null)
@@ -34,7 +40,13 @@ export default function Calendar({
       <TextInput
         {...props}
         value={selectedData}
-        onOpen={() => ref.current?.open()}
+        onOpen={async () => {
+          if (beforeOpen) {
+            await beforeOpen()
+          }
+
+          ref.current?.open()
+        }}
         icon={date ? X : null}
         onClickIcon={() => onDateSelected(null)}
       />
@@ -43,6 +55,8 @@ export default function Calendar({
           value={date}
           onDateSelected={dateSelected}
           blockPast={blockPast}
+          blockedDays={blockedDays}
+          onMonthChange={onMonthChange}
         />
       </AlertDialog>
     </>

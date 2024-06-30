@@ -19,28 +19,55 @@ type CalendarWeeks = CalendarWeek[]
 interface CalendarComponentProps {
   value: Date | null
   onDateSelected: (date: Date) => void
+  onMonthChange?: (month: number) => void
+  blockedDays?: Date[]
   blockPast?: boolean
 }
 
 export default function CalendarComponent({
   value,
   onDateSelected,
-  blockPast
+  blockPast,
+  onMonthChange,
+  blockedDays
 }: CalendarComponentProps) {
   const [currentDate, setCurrentDate] = useState(() => dayjs().set('date', 1))
 
   function previousMonth() {
-    setCurrentDate(currentDate.subtract(1, 'month'))
+    const newMonth = currentDate.subtract(1, 'month')
+
+    setCurrentDate(newMonth)
+    onMonthChange && onMonthChange(newMonth.month())
   }
 
   function nextMonth() {
-    setCurrentDate(currentDate.add(1, 'month'))
+    const newMonth = currentDate.add(1, 'month')
+
+    setCurrentDate(newMonth)
+    onMonthChange && onMonthChange(newMonth.month())
   }
 
   const currentMonth = currentDate.locale('pt-br').format('MMMM')
   const currentYear = currentDate.format('YYYY')
 
   const calendarWeeks = useMemo(() => {
+    function isDayDisabled(date: dayjs.Dayjs) {
+      let blocked = false
+
+      if (blockPast) {
+        blocked = date.endOf('day').isBefore(new Date())
+      }
+
+      if (!blocked && blockedDays) {
+        blocked =
+          blockedDays.find((day) =>
+            date.startOf('day').isSame(dayjs(day).startOf('day'))
+          ) !== undefined
+      }
+
+      return blocked
+    }
+
     const daysInMonthArray = Array.from({
       length: currentDate.daysInMonth()
     }).map((_, index) => currentDate.set('date', index + 1))
@@ -73,7 +100,7 @@ export default function CalendarComponent({
       })),
       ...daysInMonthArray.map((date) => ({
         date,
-        disabled: !!blockPast && date.endOf('day').isBefore(new Date()),
+        disabled: isDayDisabled(date),
         today: date.endOf('day').isSame(dayjs().endOf('day')),
         active:
           value !== undefined &&
@@ -99,7 +126,7 @@ export default function CalendarComponent({
 
       return weeks
     }, [])
-  }, [currentDate, value])
+  }, [currentDate, value, blockedDays, blockPast])
 
   return (
     <div className="flex flex-col gap-6 p-6">
